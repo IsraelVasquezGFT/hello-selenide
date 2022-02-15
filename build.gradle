@@ -6,6 +6,7 @@ plugins {
     id 'pmd'
     id 'info.solidsoft.pitest' version '1.7.0'
     id 'io.qameta.allure' version '2.9.3'
+    //
 }
 
 group 'com.sinensia'
