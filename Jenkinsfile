@@ -1,4 +1,4 @@
-pipeline {
+/*pipeline {
     agent any
 
     stages {
@@ -39,6 +39,36 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
+            }
+        }
+    }
+}*/
+pipeline {
+    agent any
+    stages {
+        stage('Clean') {
+            steps {
+                sh '.gradlew clean'
+            }
+        }
+        stage('Test') {
+            // Parallelize tests browsers
+            parallel {
+                stage('test: chrome') {
+                    steps {
+                        sh '.gradlew test'
+                    }
+                }
+                stage('test: firefox') {
+                    steps {
+                        sh '.gradlew testFirefox'
+                    }
+                }
+            }
+            post {
+                always {
+                    junit 'build/test-results/test/*.xml'
+                }
             }
         }
     }
