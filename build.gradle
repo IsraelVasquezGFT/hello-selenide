@@ -1,5 +1,10 @@
 plugins {
+    id 'org.springframework.boot' version '2.6.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'jacoco'
+    id 'pmd'
+    id 'info.solidsoft.pitest' version '1.7.0'
     id 'io.qameta.allure' version '2.9.3'
 }
 
@@ -105,7 +110,7 @@ task cucumberCli() {
 // Jenkinsfile
 tasks.named('test') {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
+    //finalizedBy jacocoTestReport
 }
 
 jacocoTestReport{
