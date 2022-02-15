@@ -48,7 +48,7 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
-                sh '.gradlew clean'
+                sh './gradlew clean'
             }
         }
         stage('Test') {
@@ -56,12 +56,12 @@ pipeline {
             parallel {
                 stage('test: chrome') {
                     steps {
-                        sh '.gradlew test'
+                        sh './gradlew test'
                     }
                 }
                 stage('test: firefox') {
                     steps {
-                        sh '.gradlew testFirefox'
+                        sh './gradlew testFirefox'
                     }
                 }
             }
